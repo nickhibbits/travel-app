@@ -1,5 +1,5 @@
 // Import statements for relevant js
-import {} from './js/app'
+import { performAction } from './js/app'
 
 // Import statements for styles
 import './styles/style.css'

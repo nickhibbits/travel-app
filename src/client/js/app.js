@@ -19,6 +19,9 @@ function performAction(e) {
     });
 }
 
+// Export performAction function for webpack entry
+export { performAction }
+
 // Access the OpenWeather API to get local weather data based on the zip code
 const getWeather = async (baseURL, zip, key) => {
     const res = await fetch(baseURL + zip + key);

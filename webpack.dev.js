@@ -1,8 +1,26 @@
-const path = require("path");
-const webpack = require("webpack");
+const path = require("path")
+const webpack = require("webpack")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: './src/client/index.js',
   mode: 'development',
-
+  devtool: 'source-map',
+    stats: 'verbose',
+    output: {
+     libraryTarget: 'var',
+     library: 'Client'
+    },
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 8000,
+    },
+  module: {
+        rules: [
+            {
+                test: '/\.js$/',
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
 }
