@@ -2,7 +2,7 @@
 import { performAction } from './js/app'
 
 // Import statements for styles
-import './styles/style.css'
+import './styles/style.scss'
 
 // Export statements for js
 export {}
