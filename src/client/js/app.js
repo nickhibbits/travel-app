@@ -1,5 +1,5 @@
 /* Global Variables */
-let baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
+let baseURL = "api.geonames.org/search?username=nickhibbits&name=";
 const apiKey = "&appid=cf671a0e6004b23e0fa755be924ec763&units=imperial";
 
 // Create a new date instance dynamically with JS
@@ -11,20 +11,21 @@ document.getElementById("generate").addEventListener("click", performAction);
 
 // GET weather info from API, then POST that info, along with user's entry, to the UI
 function performAction(e) {
-    let newZip = document.getElementById("zip").value;
-    let feelings = document.getElementById("feelings").value;
-    getWeather(baseURL, newZip, apiKey).then(function (data) {
-        postData("/add", { temperature: data.main.temp, date: newDate, entry: feelings });
-        update();
-    });
+    let dest = document.getElementById("zip").value;
+    // let feelings = document.getElementById("feelings").value;
+    getLocation(baseURL, dest)
+    // .then(function (data) {
+    //     postData("/add", { temperature: data.main.temp, date: newDate, entry: feelings });
+    //     update();
+    // });
 }
 
 // Export performAction function for webpack entry
 export { performAction }
 
 // Access the OpenWeather API to get local weather data based on the zip code
-const getWeather = async (baseURL, zip, key) => {
-    const res = await fetch(baseURL + zip + key);
+const getLocation = async (baseURL, loc) => {
+    const res = await fetch(baseURL + loc);
     try {
         const data = await res.json();
         console.log(data);

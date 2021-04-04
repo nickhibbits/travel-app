@@ -5,12 +5,10 @@ import { performAction } from './js/app'
 import './styles/style.scss'
 
 // Export statements for js
-export {}
+export { performAction }
 
-// Event listener
-window.addEventListener("DOMContentLoaded", (e) => {
-	// get reference to the form elemet
-	const form = document.getElementById("form");
-	// Add submit event listener on this form
-	form.addEventListener("submit", handleSubmit);
-});
+
+// get reference to the button elemet
+const button = document.getElementById("generate");
+// Add submit event listener on this form
+button.addEventListener("click", performAction);
