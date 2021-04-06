@@ -1,5 +1,5 @@
 /* Global Variables */
-let baseURL = "api.geonames.org/search?username=nickhibbits&name=";
+let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=10&q="
 
 // Create a new date instance dynamically with JS
 let d = new Date();
