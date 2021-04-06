@@ -6,8 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "build-dev": "webpack serve --config webpack.dev.js",
-    "dev": "concurrently \"npm run build-dev\" \"npm run start\"",
+    "build-dev": "webpack --config webpack.dev.js",
+    "watch-dev": "webpack serve --config webpack.dev.js",
+    "dev": "concurrently \"npm run watch-dev\" \"npm run start\"",
     "del": "rm -R dist"
   },
   "keywords": [],
