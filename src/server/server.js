@@ -27,22 +27,32 @@ const server = app.listen(port, () => {
     console.log(`Server is running on localhost: ${port}`);
 });
 
-// POST route
-app.post("/add", function (req, res) {
+// POST route used if departure date is within a week
+app.post("/current", function (req, res) {
     let data = req.body;
     console.log(data);
+    // Call Weatherbit 'Current Weather API' with 'data'
     newEntry = {
-        country: data.country,
-        latitude: data.latitude,
-        longitude: data.longitude,
+      // Extract relevant weather data
     };
     projectData["entry"] = newEntry;
     console.log(projectData);
-    // Call Weatherbit with newEntry info 
 });
 
-// GET route
-app.get("/updatePage", function (req, res) {
-    res.send(projectData);
+// POST route used if departure date is past a week
+app.post("/future", function (req, res) {
+    let data = req.body;
+    console.log(data);
+    // Call Weatherbit 'Forecast API (16 day / daily)' with 'data'
+    newEntry = {
+      // Extract relevant weather data
+    };
+    projectData["entry"] = newEntry;
     console.log(projectData);
 });
+
+// // GET route
+// app.get("/updatePage", function (req, res) {
+//     res.send(projectData);
+//     console.log(projectData);
+// });
