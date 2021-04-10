@@ -31,9 +31,9 @@ const server = app.listen(port, () => {
 app.post("/add", function (req, res) {
     let data = req.body;
     newEntry = {
-        temperature: data.temperature,
-        date: data.date,
-        entry: data.entry,
+        country: data.country,
+        latitude: data.latitude,
+        longitude: data.longitude,
     };
     projectData["entry"] = newEntry;
 });

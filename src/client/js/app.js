@@ -7,13 +7,14 @@ let newDate = d.getMonth()+1 + "." + d.getDate() + "." + d.getFullYear();
 
 // IN PROGRESS, GET coordinates of destination, returns weather and a picture
 function performAction(e) {
-    let dest = document.getElementById("zip").value;
+    let dest = document.getElementById("dest").value;
     // let feelings = document.getElementById("feelings").value;
     getLocation(baseURL, dest)
-    // .then(function (data) {
-    //     postData("/add", { temperature: data.main.temp, date: newDate, entry: feelings });
-    //     update();
-    // });
+    .then(function (data) {
+      console.log(data.geonames[0]);
+        postData("/add", { country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        // update();
+    });
 }
 
 // Export performAction function for webpack entry
@@ -31,24 +32,24 @@ const getLocation = async (baseURL, loc) => {
     }
 };
 
-// // POST request to grab data returned from OpenWeather API
-// const postData = async (url = "", newInfo = {}) => {
-//     const response = await fetch(url, {
-//         method: "POST",
-//         credentials: "same-origin",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         // Body data type must match "Content-Type" header
-//         body: JSON.stringify(newInfo),
-//     });
-//     try {
-//         const newData = await response.json();
-//         return newData;
-//     } catch (error) {
-//         console.log("error", error);
-//     }
-// };
+// POST request to grab data returned from OpenWeather API
+const postData = async (url = "", newInfo = {}) => {
+    const response = await fetch(url, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        // Body data type must match "Content-Type" header
+        body: JSON.stringify(newInfo),
+    });
+    try {
+        const newData = await response.json();
+        return newData;
+    } catch (error) {
+        console.log("error", error);
+    }
+};
 //
 // // Update UI
 // const update = async () => {
