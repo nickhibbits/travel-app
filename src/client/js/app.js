@@ -8,13 +8,13 @@ let newDate = d.getMonth()+1 + "." + d.getDate() + "." + d.getFullYear();
 // IN PROGRESS: performAction to GET coordinates of destination, compare deprture date with current date, return date-dependent weather with picture
 function performAction(e) {
     let dest = document.getElementById("dest").value;
-    // let date = document.getElementById("depart").value;
-    // console.log(d);
+    let date = document.getElementById("depart").value;
+    console.log(d());
     getLocation(baseURL, dest)
     .then(function (data) {
       console.log(data.geonames[0]);
 
-      // TODO: conditional statement that uses different routes as first arg in postWeather, to call different Weatherbit url's on server-side, depending on departure date
+      // TODO: conditional statement to use different routes as first arg in postWeather(), to call different Weatherbit url's on server-side, depending on departure date
 
         // postWeather("/current", { country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
         // update();
