@@ -30,12 +30,15 @@ const server = app.listen(port, () => {
 // POST route
 app.post("/add", function (req, res) {
     let data = req.body;
+    console.log(data);
     newEntry = {
         country: data.country,
         latitude: data.latitude,
         longitude: data.longitude,
     };
     projectData["entry"] = newEntry;
+    console.log(projectData);
+    // Call Weatherbit with newEntry info 
 });
 
 // GET route

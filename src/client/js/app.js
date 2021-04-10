@@ -12,7 +12,7 @@ function performAction(e) {
     getLocation(baseURL, dest)
     .then(function (data) {
       console.log(data.geonames[0]);
-        postData("/add", { country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        postWeather("/add", { country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
         // update();
     });
 }
@@ -25,15 +25,15 @@ const getLocation = async (baseURL, loc) => {
     const res = await fetch(baseURL + loc);
     try {
         const data = await res.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.log("error", error);
     }
 };
 
-// POST request to grab data returned from OpenWeather API
-const postData = async (url = "", newInfo = {}) => {
+// POST request to display data returned from Weatherbit API
+const postWeather = async (url = "", newInfo = {}) => {
+    console.log(newInfo);
     const response = await fetch(url, {
         method: "POST",
         credentials: "same-origin",
@@ -43,12 +43,18 @@ const postData = async (url = "", newInfo = {}) => {
         // Body data type must match "Content-Type" header
         body: JSON.stringify(newInfo),
     });
-    try {
-        const newData = await response.json();
-        return newData;
-    } catch (error) {
-        console.log("error", error);
-    }
+    console.log(response);
+    
+  // TODO: function to compare departure date with current date 'd', then return either current weather or the predicted forecast
+
+    // try {
+    //     const newData = await response.json();
+    //     console.log(newData);
+    //     return newData;
+    //     // console.log(newData);
+    // } catch (error) {
+    //     console.log("error", error);
+    // }
 };
 //
 // // Update UI
