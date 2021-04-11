@@ -6,17 +6,13 @@ body{
 
 #app{
     display: grid;
-    // grid-template-rows: 110px 100px 140px 320px;
     // grid-template-columns:
-    grid-template-columns: 25% 25% 25% 25%;
     height: 150vh;
-    // width: 68vw;
     width: 100%;
     background: #1d2239;
     color: #f0d43a;
     justify-content: space-between;
     grid-gap: 10px;
-    // font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
 

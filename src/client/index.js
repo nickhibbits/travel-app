@@ -3,6 +3,7 @@ import { performAction } from './js/app'
 
 // Import statements for styles
 import './styles/style.scss'
+import './styles/breakpoints.scss'
 
 // Export statements for js
 export { performAction }
