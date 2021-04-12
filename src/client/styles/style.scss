@@ -1,13 +1,15 @@
 body{
   background: #1d2239;
-  margin: auto, 2.5em, auto, 2.5em;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
     display: grid;
-    // grid-template-columns:
-    height: 150vh;
+    // margin declaration below not working??
+    // margin: auto, 4em, auto, 4em;
+    grid-template-rows: 110px 75px 140px 300px;
+    // grid-template-columns: 20% 20% 20%;
+    height: 100vh;
     width: 100%;
     background: #1d2239;
     color: #f0d43a;
@@ -41,17 +43,15 @@ body{
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
-    display:block;
-    font-size: 27px;
+    font-size: 20px;
 }
 
 input{
-    display:block;
-    height: 60px;
-    width: 175px;
-    background:#22b2da;
+    display: inline;
+    border-radius: 5px;
+    background:#535e6f;
     color: #f0d43a;
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
 }
