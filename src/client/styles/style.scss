@@ -1,14 +1,15 @@
 body{
   background: #1d2239;
+  margin-left: 4%;
+  margin-right: 4%;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
     display: grid;
     // margin declaration below not working??
-    // margin: auto, 4em, auto, 4em;
-    grid-template-rows: 110px 75px 140px 300px;
-    // grid-template-columns: 20% 20% 20%;
+    grid-template-rows: 110px 65px 25px 450px;
+    grid-template-columns: repeat(8, 1fr);
     height: 100vh;
     width: 100%;
     background: #1d2239;
@@ -22,23 +23,35 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height:auto;
-    border: 1px solid red;
+    height: auto;
+    // border: 1px solid red;
 }
 
 .headline {
   font-size: 70px;
   border-bottom: 5px solid blue;
+  grid-area: 1/1/1/3;
 }
 
 .dest {
+    grid-area: 2/1/2/1;
+}
 
+.myInput {
+    display: inline;
 }
 
 .depart {
+    grid-area: 2/2/2/3;
 }
 
 .picture{
+    grid-area: 4/1/4/5;
+}
+
+button {
+    grid-area: 3/1/3/2;
+    border-radius: 5px;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
