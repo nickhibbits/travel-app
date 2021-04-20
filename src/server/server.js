@@ -27,28 +27,57 @@ const server = app.listen(port, () => {
     console.log(`Server is running on localhost: ${port}`);
 });
 
-// POST route used if departure date is within a week
-app.post("/current", function (req, res) {
+
+// GET route used if departure date is within a week
+app.get("/current", function (req, res) {
     let data = req.body;
     console.log(data);
-    // Call Weatherbit 'Current Weather API' with 'data'
-    newEntry = {
+
+    // Call Weatherbit 'Current Weather API' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 45
+    const requestOptions = {
+      method: 'GET',
+    };
+
+    const apiKey = process.env.API_KEY;
+
+    console.log(userInput);
+
+    const result = await fetch()
+    try {
+      const response = await result.json();
+      console.log(response);
+      newEntry = {
       // Extract relevant weather data
     };
     projectData["entry"] = newEntry;
+    }
     console.log(projectData);
 });
 
-// POST route used if departure date is past a week
-app.post("/future", function (req, res) {
-    let data = req.body;
-    console.log(data);
-    // Call Weatherbit 'Forecast API (16 day / daily)' with 'data'
+// GET route used if departure date is past a week
+app.get("/future", function (req, res) {
+  let data = req.body;
+  console.log(data);
+
+  // Call Weatherbit 'Current Weather API' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 45
+  const requestOptions = {
+    method: 'GET',
+  };
+
+  const apiKey = process.env.API_KEY;
+
+  console.log(userInput);
+
+  const result = await fetch()
+  try {
+    const response = await result.json();
+    console.log(response);
     newEntry = {
-      // Extract relevant weather data
-    };
-    projectData["entry"] = newEntry;
-    console.log(projectData);
+    // Extract relevant weather data
+  };
+  projectData["entry"] = newEntry;
+  }
+  console.log(projectData);
 });
 
 // // GET route

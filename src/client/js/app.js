@@ -41,7 +41,7 @@ const getLocation = async (baseURL, loc) => {
 };
 
 // Compare dates to get either current or future weather from Weatherbit
-// TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Change postWeather to perform GET request, to align with Weatherbit API 3. Fix first argument of postWeather to properly talk to the server, and then the according Weatherbit API.
+// TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Fix first argument of postWeather to properly talk to the server, and then the according Weatherbit API.
 function dateCompare(d1, d2){
     const date1 = new Date(d1);
     const date2 = new Date(d2);
@@ -60,7 +60,7 @@ function dateCompare(d1, d2){
 // POST request to display data returned from Weatherbit API
 const postWeather = async (url = "", newInfo = {} ) => {
     const response = await fetch(url, {
-        method: "POST",
+        method: "GET",
         credentials: "same-origin",
         headers: {
             "Content-Type": "application/json",
