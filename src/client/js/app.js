@@ -41,16 +41,16 @@ const getLocation = async (baseURL, loc) => {
 };
 
 // Compare dates to get either current or future weather from Weatherbit
-// TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Fix first argument of postWeather to properly talk to the server, and then the according Weatherbit API.
+// TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Change postWeather to perform GET request, to align with Weatherbit API 3. Fix first argument of postWeather to properly talk to the server, and then the according Weatherbit API.
 function dateCompare(d1, d2){
     const date1 = new Date(d1);
     const date2 = new Date(d2);
 
     if(date1 > date2){
-        // postWeather("/current", { country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        postWeather("/current", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d1} is later than ${d2}`)
     } else if(date1 < date2){
-        // postWeather("/future", { country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        postWeather("/future", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d2} is later than ${d1}`)
     } else{
         console.log(`Both dates are equal`)
@@ -69,15 +69,16 @@ const postWeather = async (url = "", newInfo = {} ) => {
         body: JSON.stringify(newInfo),
     });
 
-    // try {
-    //     const newData = await response.json();
-    //     console.log(newData);
-    //     return newData;
-    //     // console.log(newData);
-    // } catch (error) {
-    //     console.log("error", error);
-    // }
+    try {
+        const newData = await response.json();
+        console.log(newData);
+        return newData;
+        // console.log(newData);
+    } catch (error) {
+        console.log("error", error);
+    }
 };
+
 //
 // // Update UI
 // const update = async () => {
