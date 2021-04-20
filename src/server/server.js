@@ -39,6 +39,8 @@ app.get("/current", function (req, res) {
     };
 
     const apiKey = process.env.API_KEY;
+    // latitude variable
+    // longitude variable
 
     console.log(userInput);
 
@@ -59,12 +61,14 @@ app.get("/future", function (req, res) {
   let data = req.body;
   console.log(data);
 
-  // Call Weatherbit 'Current Weather API' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 45
+  // Call Weatherbit 'CForecast API (16 day / daily)' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 75
   const requestOptions = {
     method: 'GET',
   };
 
   const apiKey = process.env.API_KEY;
+  // latitude variable
+  // longitude variable
 
   console.log(userInput);
 

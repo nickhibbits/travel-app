@@ -47,10 +47,10 @@ function dateCompare(d1, d2){
     const date2 = new Date(d2);
 
     if(date1 > date2){
-        postWeather("/current", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        getWeather("/current", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d1} is later than ${d2}`)
     } else if(date1 < date2){
-        postWeather("/future", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        getWeather("/future", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d2} is later than ${d1}`)
     } else{
         console.log(`Both dates are equal`)
@@ -58,7 +58,7 @@ function dateCompare(d1, d2){
 }
 
 // POST request to display data returned from Weatherbit API
-const postWeather = async (url = "", newInfo = {} ) => {
+const getWeather = async (url = "", newInfo = {} ) => {
     const response = await fetch(url, {
         method: "GET",
         credentials: "same-origin",
