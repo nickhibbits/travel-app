@@ -29,7 +29,7 @@ const server = app.listen(port, () => {
 
 
 // GET route used if departure date is within a week
-app.get("/current", function (req, res) {
+app.get("/current", async function (req, res) {
     let data = req.body;
     console.log(data);
 
@@ -57,11 +57,11 @@ app.get("/current", function (req, res) {
 });
 
 // GET route used if departure date is past a week
-app.get("/future", function (req, res) {
+app.get("/future", async function (req, res) {
   let data = req.body;
   console.log(data);
 
-  // Call Weatherbit 'CForecast API (16 day / daily)' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 75
+  // Call Weatherbit 'Forecast API (16 day / daily)' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 75
   const requestOptions = {
     method: 'GET',
   };
