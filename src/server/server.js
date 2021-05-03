@@ -44,7 +44,7 @@ app.post("/current", async function (req, res) {
       const response = await result.json();
       console.log(response);
       newEntry = {
-      // Extract relevant weather data
+      temp: response.temp
     };
     projectData["entry"] = newEntry;
     } catch (error) {

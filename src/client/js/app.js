@@ -47,10 +47,10 @@ function dateCompare(d1, d2){
     // const date3 = date1 + 7;
 
     if(date1 > date2){
-        // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+        postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d1} is later than ${d2}`)
     } else if(date1 < date2){
-        // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+        postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d2} is later than ${d1}`)
     } else{
         console.log(`Both dates are equal`)
