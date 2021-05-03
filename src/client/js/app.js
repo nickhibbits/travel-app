@@ -18,7 +18,15 @@ function performAction(e) {
       console.log(date);
       console.log(d);
 
-      // TODO: conditional statement to use different routes as first arg in postWeather(), to call different Weatherbit url's on server-side, depending on departure date
+      // if(date > d){
+      //     postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+      //     console.log(`${date} is later than ${d}`)
+      // } else if(date < d){
+      //     postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+      //     console.log(`${date} is later than ${d}`)
+      // } else{
+      //     console.log(`Both dates are equal`)
+      // }
 
       dateCompare(date, d)
       // .then(update())
