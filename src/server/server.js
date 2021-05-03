@@ -28,23 +28,18 @@ const server = app.listen(port, () => {
 });
 
 
-// GET route used if departure date is within a week
-app.get("/current", async function (req, res) {
+// POST route used if departure date is within a week
+app.post("/current", async function (req, res) {
     let data = req.body;
     console.log(data);
 
-    // Call Weatherbit 'Current Weather API' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 45
-    const requestOptions = {
-      method: 'GET',
-    };
-
     const apiKey = process.env.API_KEY;
-    // latitude variable
-    // longitude variable
+    let lat = data.latitude;
+    let lon = data.longitude;
 
     console.log(userInput);
 
-    const result = await fetch()
+    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"lon="+lon+"&key="+apiKey)
     try {
       const response = await result.json();
       console.log(response);
@@ -52,34 +47,33 @@ app.get("/current", async function (req, res) {
       // Extract relevant weather data
     };
     projectData["entry"] = newEntry;
-    }
+    } catch (error) {
+    console.log("error", error);
+  }
     console.log(projectData);
 });
 
-// GET route used if departure date is past a week
-app.get("/future", async function (req, res) {
+// POST route used if departure date is past a week
+app.post("/future", async function (req, res) {
   let data = req.body;
   console.log(data);
 
-  // Call Weatherbit 'Forecast API (16 day / daily)' with 'data' -- access 'data' to create relevant variables to place in the url, located in the fetch request on line 75
-  const requestOptions = {
-    method: 'GET',
-  };
-
   const apiKey = process.env.API_KEY;
-  // latitude variable
-  // longitude variable
+  let lat = data.latitude;
+  let lon = data.longitude;
 
   console.log(userInput);
 
-  const result = await fetch()
+  const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"lon="+lon+"&key="+apiKey)
   try {
     const response = await result.json();
     console.log(response);
     newEntry = {
     // Extract relevant weather data
-  };
+  }
   projectData["entry"] = newEntry;
+  } catch (error) {
+    console.log("error", error);
   }
   console.log(projectData);
 });

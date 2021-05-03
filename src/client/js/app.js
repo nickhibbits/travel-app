@@ -3,9 +3,8 @@ let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=1
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-// let newDate = d.getMonth()+1 + "." + d.getDate() + "." + d.getFullYear();
 
-// IN PROGRESS: performAction to GET coordinates of destination, compare deprture date with current date, return date-dependent weather with picture
+// IN PROGRESS: performAction to GET coordinates of destination, compare deprture date with current date, and POST date-dependent weather with picture
 function performAction(e) {
   event.preventDefault();
     let dest = document.getElementById("dest").value;
@@ -48,10 +47,10 @@ function dateCompare(d1, d2){
     // const date3 = date1 + 7;
 
     if(date1 > date2){
-        getWeather("/current", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d1} is later than ${d2}`)
     } else if(date1 < date2){
-        getWeather("/future", {country:data.geonames[0], latitude: data.geonames[0].lat, longitude:data.geonames[0].lng});
+        // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d2} is later than ${d1}`)
     } else{
         console.log(`Both dates are equal`)
@@ -59,9 +58,9 @@ function dateCompare(d1, d2){
 }
 
 // POST request to display data returned from Weatherbit API
-const getWeather = async (url = "", newInfo = {} ) => {
+const postWeather = async (url = "", newInfo = {} ) => {
     const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         credentials: "same-origin",
         headers: {
             "Content-Type": "application/json",
