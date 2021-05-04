@@ -1,14 +1,15 @@
 /* Global Variables */
+var moment = require('moment');
 let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=10&q=";
 
-var moment = require('moment');
 // Create a new date instance dynamically with JS
-let d = new Date();
-
+// let d = new Date();
+let d = moment().format("mmm do yy");
 // IN PROGRESS: performAction to GET coordinates of destination, compare deprture date with current date, and POST date-dependent weather with picture
 function performAction(e) {
   event.preventDefault();
     let dest = document.getElementById("dest").value;
+    // update date variable to align with moment documentation
     let date = document.getElementById("depart").value;
     getLocation(baseURL, dest)
     .then(function(data) {
@@ -50,15 +51,14 @@ const getLocation = async (baseURL, loc) => {
 // Compare dates to get either current or future weather from Weatherbit
 // TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Determine if getWeather needs to be POST or GET request
 function dateCompare(d1, d2){
-    const date1 = new Date(d1);
-    const date2 = new Date(d2);
-    // const date3 = date1 + 7;
+    const date1 = moment(d1).format("mmm do yy");
+    const date2 = moment(d2).format("mmm do yy")
 
     // if(date1 > date2){
-    if(moment().diff(`${date1}`, "days") > 7){
+    if(moment().diff(`${date1}`, "days") <= 7){
         // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d1} is within 7 days of ${d2}`)
-    } else if(date1 < date2){
+    } else if(moment().diff(`${date1}`, "days") > 7) {
         // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d2} is more than 7 days away from ${d1}`)
     } else{
