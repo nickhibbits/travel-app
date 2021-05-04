@@ -1,6 +1,7 @@
 /* Global Variables */
 let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=10&q=";
 
+var moment = require('moment');
 // Create a new date instance dynamically with JS
 let d = new Date();
 
@@ -9,14 +10,13 @@ function performAction(e) {
   event.preventDefault();
     let dest = document.getElementById("dest").value;
     let date = document.getElementById("depart").value;
-    // console.log(d);
     getLocation(baseURL, dest)
     .then(function(data) {
-      console.log(data.geonames[0].lat);
-      console.log(data.geonames[0].lng);
-      console.log(data.geonames[0].countryName);
-      console.log(date);
-      console.log(d);
+      // console.log(data.geonames[0].lat);
+      // console.log(data.geonames[0].lng);
+      // console.log(data.geonames[0].countryName);
+      // console.log(date);
+      // console.log(d);
 
       // if(date > d){
       //     postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
@@ -54,12 +54,13 @@ function dateCompare(d1, d2){
     const date2 = new Date(d2);
     // const date3 = date1 + 7;
 
-    if(date1 > date2){
-        postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-        console.log(`${d1} is later than ${d2}`)
+    // if(date1 > date2){
+    if(moment().diff(`${date1}`, "days") > 7){
+        // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+        console.log(`${d1} is within 7 days of ${d2}`)
     } else if(date1 < date2){
-        postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-        console.log(`${d2} is later than ${d1}`)
+        // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+        console.log(`${d2} is more than 7 days away from ${d1}`)
     } else{
         console.log(`Both dates are equal`)
     }
