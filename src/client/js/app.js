@@ -4,10 +4,10 @@ let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=1
 
 // Create a new date instance dynamically with JS
 // let d = new Date();
-let d = moment().format("mmm do yy");
+
 // IN PROGRESS: performAction to GET coordinates of destination, compare deprture date with current date, and POST date-dependent weather with picture
 function performAction(e) {
-  event.preventDefault();
+  e.preventDefault();
     let dest = document.getElementById("dest").value;
     // update date variable to align with moment documentation
     let date = document.getElementById("depart").value;
@@ -16,7 +16,7 @@ function performAction(e) {
       // console.log(data.geonames[0].lat);
       // console.log(data.geonames[0].lng);
       // console.log(data.geonames[0].countryName);
-      // console.log(date);
+      console.log(date);
       // console.log(d);
 
       // if(date > d){
@@ -29,7 +29,7 @@ function performAction(e) {
       //     console.log(`Both dates are equal`)
       // }
 
-      dateCompare(date, d)
+      dateCompare(d, date)
       // .then(update())
     });
 }
@@ -51,14 +51,14 @@ const getLocation = async (baseURL, loc) => {
 // Compare dates to get either current or future weather from Weatherbit
 // TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Determine if getWeather needs to be POST or GET request
 function dateCompare(d1, d2){
-    const date1 = moment(d1).format("mmm do yy");
-    const date2 = moment(d2).format("mmm do yy")
+    const date1 = moment(d1).format("YYYY-MM-DD").add(7, "days");
+    const date2 = moment(d2).format("YYYY-MM-DD")
 
     // if(date1 > date2){
-    if(moment().diff(`${date1}`, "days") <= 7){
+    if(date1 >= date2){
         // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-        console.log(`${d1} is within 7 days of ${d2}`)
-    } else if(moment().diff(`${date1}`, "days") > 7) {
+        console.log(`${d2} is within 7 days of ${d1}`)
+    } else if(date1 < date2) {
         // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
         console.log(`${d2} is more than 7 days away from ${d1}`)
     } else{
