@@ -9,6 +9,6 @@ import './styles/breakpoints.scss'
 export { performAction }
 
 // get reference to the button elemet
-const button = document.getElementById("generate");
+const button = document.getElementById("search");
 // Add submit event listener on this form
 button.addEventListener("click", performAction);

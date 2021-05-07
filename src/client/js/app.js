@@ -29,51 +29,43 @@ const getLocation = async (baseURL, loc) => {
 
 // Compare dates to get either current or future weather from Weatherbit
 // TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Determine if getWeather needs to be POST or GET request
-// function dateCompare(data) {
-//     var userDate = moment(new Date(document.getElementById("depart").value));
-//     console.log(userDate);
-//     var cutoff = moment().add(7, "days"); // how to set the end 7 days from now?
-//     // console.log(cuttoff);
-//     var duration = moment.duration(userDate.diff(cutoff));
-//     var days = duration.asDays();
-//         if (days <= 7) {
-//           // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-//           console.log('input date is within 7 days of current date');
-//         } else {
-//           // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-//           console.log('input date is more than 7 days away from current date');
-//         }
-// }
 
-// Attempt 2
+// set minimum date for current day
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth()+1;
+let yyyy = today.getFullYear();
+if(dd<10){
+  dd='0'+dd
+}
+if(mm<10){
+  mm='0'+mm
+}
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("depart").setAttribute("min", today);
+
 function dateCompare(data) {
-  // set minimum date for current day
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth()+1;
-    let yyyy = today.getFullYear();
-    if(dd<10){
-      dd='0'+dd
-    }
-    if(mm<10){
-      mm='0'+mm
-    }
-    today = yyyy+'-'+mm+'-'+dd;
-    document.getElementById("depart").setAttribute("min", today);
-
   // determine if user date is within 7 days of current date
-    var userDate = new Date(document.getElementById("depart").value);
+    Date.prototype.addDays = function(days) {
+      this.setDate(this.getDate() + parseInt(days));
+      return this;
+    };
+
+    let userDate = new Date(document.getElementById("depart").value);
     console.log(userDate);
-    // var cutoff = moment().add(7, "days"); // how to set the end 7 days from now?
-    // var duration = moment.duration(userDate.diff(cutoff));
-    // var days = duration.asDays();
-    //     if (days <= 7) {
-    //       // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-    //       console.log('input date is within 7 days of current date');
-    //     } else {
-    //       // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-    //       console.log('input date is more than 7 days away from current date');
-    //     }
+    console.log(new Date())
+    let cutoffDate = new Date().addDays(7);
+    console.log(cutoffDate);
+    let difference = userDate.getTime() - cutoffDate.getTime();
+    let differenceByDay = difference / (1000 * 3600 * 24);
+    console.log(differenceByDay);
+    if (differenceByDay <= 0) {
+      // postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].latlongitude:data.geonames[0].lng});
+      console.log('input date is within 7 days of current date');
+    } else if (differenceByDay > 0) {
+      // postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].latlongitude:data.geonames[0].lng});
+      console.log('input date is more than 7 days away from current date');
+    }
 }
 
 // POST request to display data returned from Weatherbit API
