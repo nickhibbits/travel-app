@@ -27,9 +27,6 @@ const getLocation = async (baseURL, loc) => {
     }
 };
 
-// Compare dates to get either current or future weather from Weatherbit
-// TODO: 1. Update conditional to determine if the trip date is within 7 days of the current date... 2. Determine if getWeather needs to be POST or GET request
-
 // set minimum date for current day
 let today = new Date();
 let dd = today.getDate();
@@ -44,8 +41,8 @@ if(mm<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("depart").setAttribute("min", today);
 
+// Compare dates to get either current or future weather from Weatherbit
 function dateCompare(data) {
-  // determine if user date is within 7 days of current date
     Date.prototype.addDays = function(days) {
       this.setDate(this.getDate() + parseInt(days));
       return this;
