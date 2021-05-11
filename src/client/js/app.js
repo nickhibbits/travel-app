@@ -58,11 +58,11 @@ function dateCompare(data) {
     // console.log(differenceByDay);
     if (differenceByDay <= 0) {
       console.log('input date is within 7 days of current date');
-      postWeather("/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+      postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
     }
     else if (differenceByDay > 0) {
       console.log('input date is more than 7 days away from current date');
-      postWeather("/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+      postWeather("http://localhost:8000/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
     }
 }
 
@@ -77,7 +77,6 @@ const postWeather = async (url = "", newInfo = {} ) => {
         // Body data type must match "Content-Type" header
         body: JSON.stringify(newInfo),
     });
-
     try {
         const newData = await response.json();
         console.log(newData);

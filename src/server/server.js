@@ -29,7 +29,7 @@ const server = app.listen(port, () => {
 
 
 // POST route used if departure date is within a week
-app.post("/current", async function (req, res) {
+app.post("http://localhost:8000/current", async function (req, res) {
     let data = req.body;
     console.log(data);
 
@@ -39,7 +39,7 @@ app.post("/current", async function (req, res) {
 
     console.log(userInput);
 
-    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"lon="+lon+"&key="+apiKey)
+    const result = await fetch("http://api.weatherbit.io/v2.0/current?lat="+lat+"lon="+lon+"&key="+apiKey)
     try {
       const response = await result.json();
       console.log(response);
