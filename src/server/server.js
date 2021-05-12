@@ -78,6 +78,30 @@ app.post("/future", async function (req, res) {
   console.log(projectData);
 });
 
+// POST route to retrieve data from Pixbay
+app.post("/picture", async function (req, res) {
+    let data = req.body;
+    console.log(data);
+
+    // const apiKey = process.env.API_KEY; check how to set new API key
+    let city = data.name;
+
+    console.log(userInput);
+
+    const result = await fetch("")
+    try {
+      const response = await result.json();
+      console.log(response);
+      newEntry = {
+
+    };
+    projectData["entry"] = newEntry;
+    } catch (error) {
+    console.log("error", error);
+  }
+    console.log(projectData);
+});
+
 // // GET route
 // app.get("/updatePage", function (req, res) {
 //     res.send(projectData);

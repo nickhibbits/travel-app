@@ -8,10 +8,12 @@ function performAction(e) {
     let dest = document.getElementById("dest").value;
     getLocation(baseURL, dest)
     .then(function(data) {
+      console.log(data.geonames[0].name);
       console.log(data.geonames[0].lat);
       console.log(data.geonames[0].lng);
       console.log(data.geonames[0].countryName);
-      dateCompare(data)
+      dateCompare(data);
+      // postPicture("/picture", {data.geonames[0].name});
       // .then(update())
     });
 }
@@ -50,7 +52,7 @@ function dateCompare(data) {
 
     let userDate = new Date(document.getElementById("depart").value);
     console.log(userDate);
-    // console.log(new Date())
+    console.log(new Date())
     let cutoffDate = new Date().addDays(7);
     // console.log(cutoffDate);
     let difference = userDate.getTime() - cutoffDate.getTime();
@@ -87,7 +89,27 @@ const postWeather = async (url = "", newInfo = {} ) => {
     }
 };
 
-//
+// POST request to display picture returned from Pixbay
+const postPicture = async (url = "", newInfo = {} ) => {
+    const response = await fetch(url, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        // Body data type must match "Content-Type" header
+        body: JSON.stringify(newInfo),
+    });
+    try {
+        const newData = await response.json();
+        console.log(newData);
+        return newData;
+        // console.log(newData);
+    } catch (error) {
+        console.log("error", error);
+    }
+};
+
 // // Update UI
 // const update = async () => {
 //     const request = await fetch("/updatePage");
