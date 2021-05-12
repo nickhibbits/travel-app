@@ -12,9 +12,9 @@ module.exports = {
      library: 'Client'
     },
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
-      compress: true,
-      port: 8000,
+      // contentBase: path.join(__dirname, 'dist'),
+      // compress: true,
+      port: 8080,
     },
   module: {
         rules: [

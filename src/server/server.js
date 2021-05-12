@@ -29,7 +29,7 @@ const server = app.listen(port, () => {
 
 
 // POST route used if departure date is within a week
-app.post("http://localhost:8000/current", async function (req, res) {
+app.post("/current", async function (req, res) {
     let data = req.body;
     console.log(data);
 
