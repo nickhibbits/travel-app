@@ -7,6 +7,11 @@ const express = require("express");
 // Start up an instance of app
 const app = express();
 
+const fetch = require('node-fetch');
+
+const dotenv = require('dotenv');
+dotenv.config();
+
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 const bodyParser = require("body-parser");
@@ -37,9 +42,7 @@ app.post("/current", async function (req, res) {
     let lat = data.latitude;
     let lon = data.longitude;
 
-    console.log(userInput);
-
-    const result = await fetch("http://api.weatherbit.io/v2.0/current?lat="+lat+"lon="+lon+"&key="+apiKey)
+    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"lon="+lon+"&key="+apiKey)
     try {
       const response = await result.json();
       console.log(response);
@@ -62,8 +65,6 @@ app.post("/future", async function (req, res) {
   let lat = data.latitude;
   let lon = data.longitude;
 
-  console.log(userInput);
-
   const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"lon="+lon+"&key="+apiKey)
   try {
     const response = await result.json();
@@ -85,8 +86,6 @@ app.post("/picture", async function (req, res) {
 
     // const apiKey = process.env.API_KEY; check how to set new API key
     let city = data.name;
-
-    console.log(userInput);
 
     const result = await fetch("")
     try {
