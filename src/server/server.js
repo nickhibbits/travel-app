@@ -42,12 +42,14 @@ app.post("/current", async function (req, res) {
     let lat = data.latitude;
     let lon = data.longitude;
 
-    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"lon="+lon+"&key="+apiKey)
+    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"&lon="+lon+"&key="+apiKey)
     try {
       const response = await result.json();
+      // console.log(response);
+      console.log("test");
       console.log(response);
       newEntry = {
-      temp: response.temp
+      temp: response.data.temp
     };
     projectData["entry"] = newEntry;
     } catch (error) {
