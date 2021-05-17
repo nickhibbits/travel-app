@@ -38,18 +38,17 @@ app.post("/current", async function (req, res) {
     let data = req.body;
     console.log(data);
 
-    const apiKey = process.env.API_KEY;
+    const apiKey = process.env.WEATHERBIT_API_KEY;
     let lat = data.latitude;
     let lon = data.longitude;
 
     const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"&lon="+lon+"&key="+apiKey)
     try {
       const response = await result.json();
-      // console.log(response);
       console.log("test");
       console.log(response);
       newEntry = {
-      temp: response.data.temp
+      temp: response.data.temp // doesn't work as expected
     };
     projectData["entry"] = newEntry;
     } catch (error) {
@@ -63,11 +62,11 @@ app.post("/future", async function (req, res) {
   let data = req.body;
   console.log(data);
 
-  const apiKey = process.env.API_KEY;
+  const apiKey = process.env.WEATHERBIT_API_KEY;
   let lat = data.latitude;
   let lon = data.longitude;
 
-  const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"lon="+lon+"&key="+apiKey)
+  const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"&lon="+lon+"&key="+apiKey)
   try {
     const response = await result.json();
     console.log(response);
@@ -86,10 +85,10 @@ app.post("/picture", async function (req, res) {
     let data = req.body;
     console.log(data);
 
-    // const apiKey = process.env.API_KEY; check how to set new API key
-    let city = data.name;
+    const apiKey = process.env.PIXBAY_API_KEY;
+    let city = data.city;
 
-    const result = await fetch("")
+    const result = await fetch("https://pixabay.com/api/?key="+apiKey+"&q="+city)
     try {
       const response = await result.json();
       console.log(response);

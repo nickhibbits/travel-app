@@ -61,10 +61,12 @@ function dateCompare(data) {
     if (differenceByDay <= 0) {
       console.log('input date is within 7 days of current date');
       postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+      // postPicture("/picture", {city:data.geonames[0].name});
     }
     else if (differenceByDay > 0) {
       console.log('input date is more than 7 days away from current date');
       postWeather("http://localhost:8000/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
+      // postPicture("/picture", {city:data.geonames[0].name});
     }
 }
 
