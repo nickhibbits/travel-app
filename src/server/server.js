@@ -83,7 +83,6 @@ app.post("/future", async function (req, res) {
 // POST route to retrieve data from Pixbay
 app.post("/picture", async function (req, res) {
     let data = req.body;
-    console.log(data);
 
     const apiKey = process.env.PIXBAY_API_KEY;
     let city = data.city;
