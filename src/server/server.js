@@ -50,7 +50,7 @@ app.post("/current", async function (req, res) {
       newEntry = {
       temp: response.data.temp // doesn't work as expected
     };
-    projectData["entry"] = newEntry;
+    projectData["currentWeather"] = newEntry;
     } catch (error) {
     console.log("error", error);
   }
@@ -73,7 +73,7 @@ app.post("/future", async function (req, res) {
     newEntry = {
     // Extract relevant weather data
   }
-  projectData["entry"] = newEntry;
+  projectData["futureWeather"] = newEntry;
   } catch (error) {
     console.log("error", error);
   }
@@ -92,9 +92,9 @@ app.post("/picture", async function (req, res) {
       const response = await result.json();
       console.log(response);
       newEntry = {
-
+          picture: response.hits.pageURL
     };
-    projectData["entry"] = newEntry;
+    projectData["pixbay"] = newEntry;
     } catch (error) {
     console.log("error", error);
   }
