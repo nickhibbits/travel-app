@@ -8,15 +8,12 @@ function performAction(e) {
     let dest = document.getElementById("dest").value;
     getLocation(baseURL, dest)
     .then(function(data) {
-      console.log(data);
       console.log(data.geonames[0].name);
       console.log(data.geonames[0].lat);
       console.log(data.geonames[0].lng);
       console.log(data.geonames[0].countryName);
-      dateCompare(data);
-      // postPicture("/picture", {data.geonames[0].name});
-      // .then(update())
-    });
+      dateCompare(data)
+    }).then(update())
 }
 
 // Access the Geonames API to get coordinates of destination
@@ -115,14 +112,17 @@ const postPicture = async (url = "", newInfo = {} ) => {
 
 // Update UI
 const update = async () => {
-    const request = await fetch("/updatePage");
+    const request = await fetch("http://localhost:8000/updatePage");
     try {
         const allData = await request.json();
-        // console.log(allData);
+        console.log(allData);
+        console.log(allData.pixbay.picture);
         // Create or find HTML elements to update
-        document.getElementById("").innerHTML = allData[""].;
-        document.getElementById("").innerHTML = allData[""].;
-        document.getElementById("").innerHTML = allData["entry"].entry;
+        let image = document.getElementsByTagName("img");
+        console.log(image);
+        image.setAttribute('src', `${allData.pixbay.picture}`);
+        // document.getElementById("").innerHTML = allData[""].;
+        // document.getElementById("").innerHTML = allData["entry"].entry;
     } catch (error) {
         console.log("error", error);
     }
