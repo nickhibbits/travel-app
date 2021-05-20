@@ -48,7 +48,7 @@ app.post("/current", async function (req, res) {
       console.log("test");
       console.log(response);
       newEntry = {
-      temp: response.data.temp // doesn't work as expected
+      temp: response.data[0].temp // doesn't work as expected
     };
     projectData["currentWeather"] = newEntry;
     } catch (error) {
@@ -92,7 +92,7 @@ app.post("/picture", async function (req, res) {
       const response = await result.json();
       console.log(response);
       newEntry = {
-          picture: response.hits.pageURL
+          picture: response.hits[0].pageURL // doesn't work as expected
     };
     projectData["pixbay"] = newEntry;
     } catch (error) {
@@ -101,8 +101,8 @@ app.post("/picture", async function (req, res) {
     console.log(projectData);
 });
 
-// // GET route
-// app.get("/updatePage", function (req, res) {
-//     res.send(projectData);
-//     console.log(projectData);
-// });
+// GET route to retrieve data used to update UI
+app.get("/updatePage", function (req, res) {
+    res.send(projectData);
+    console.log(projectData);
+});

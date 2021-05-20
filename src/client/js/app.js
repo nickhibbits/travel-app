@@ -8,6 +8,7 @@ function performAction(e) {
     let dest = document.getElementById("dest").value;
     getLocation(baseURL, dest)
     .then(function(data) {
+      console.log(data);
       console.log(data.geonames[0].name);
       console.log(data.geonames[0].lat);
       console.log(data.geonames[0].lng);
@@ -112,19 +113,20 @@ const postPicture = async (url = "", newInfo = {} ) => {
     }
 };
 
-// // Update UI
-// const update = async () => {
-//     const request = await fetch("/updatePage");
-//     try {
-//         const allData = await request.json();
-//         // console.log(allData);
-//         document.getElementById("temp").innerHTML = allData["entry"].temperature;
-//         document.getElementById("date").innerHTML = allData["entry"].date;
-//         document.getElementById("content").innerHTML = allData["entry"].entry;
-//     } catch (error) {
-//         console.log("error", error);
-//     }
-// };
+// Update UI
+const update = async () => {
+    const request = await fetch("/updatePage");
+    try {
+        const allData = await request.json();
+        // console.log(allData);
+        // Create or find HTML elements to update
+        document.getElementById("").innerHTML = allData[""].;
+        document.getElementById("").innerHTML = allData[""].;
+        document.getElementById("").innerHTML = allData["entry"].entry;
+    } catch (error) {
+        console.log("error", error);
+    }
+};
 
 // Export performAction function for webpack entry
 export { performAction }
