@@ -1,14 +1,14 @@
 body{
   background: #1d2239;
-  margin-left: 4%;
-  margin-right: 4%;
+  margin-left: 8%;
+  margin-right: 8%;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
     display: grid;
     // margin declaration below not working??
-    grid-template-rows: 110px 65px 25px 450px;
+    grid-template-rows: 110px 65px 25px 400px;
     grid-template-columns: repeat(8, 1fr);
     height: 100vh;
     width: 100%;
@@ -17,6 +17,7 @@ body{
     justify-content: space-between;
     grid-gap: 10px;
     font-family: 'Oswald', sans-serif;
+    border: 1px solid red;
 }
 
 .holder{
@@ -46,7 +47,7 @@ body{
 }
 
 .picture{
-    grid-area: 4/1/4/5;
+    grid-area: 4/1/4/4;
 }
 
 img{
@@ -55,6 +56,12 @@ img{
 button {
     grid-area: 3/1/3/2;
     border-radius: 5px;
+}
+
+.weatherHeader {
+    font-size: 20px;
+    grid-area: 4/4/4/9;
+    border: 1px solid green;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */

@@ -13,7 +13,9 @@ function performAction(e) {
       console.log(data.geonames[0].lng);
       console.log(data.geonames[0].countryName);
       dateCompare(data)
-    }).then(update())
+    }).then(function(data){
+      update()
+    });
 }
 
 // Access the Geonames API to get coordinates of destination
@@ -118,10 +120,12 @@ const update = async () => {
         console.log(allData);
         console.log(allData.pixbay.picture);
         // Create or find HTML elements to update
-        let image = document.getElementsByTagName("img");
+        let image = document.getElementById("image");
         console.log(image);
         image.setAttribute('src', `${allData.pixbay.picture}`);
-        // document.getElementById("").innerHTML = allData[""].;
+        console.log(image);
+        // doesn't work as expected
+        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather}`;
         // document.getElementById("").innerHTML = allData["entry"].entry;
     } catch (error) {
         console.log("error", error);
