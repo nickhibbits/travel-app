@@ -1,4 +1,4 @@
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 625px) {
   #app{
       grid-template-rows: 110px 75px 75px 30px 150px 450px;
       grid-template-columns: 100%;
@@ -28,7 +28,7 @@
   .weatherHeader {
       font-size: 20px;
       grid-area: 5/1/5/1;
-      border: 1px solid green;
+      // border: 1px solid green;
   }
 
   .picture{

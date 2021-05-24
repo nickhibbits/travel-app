@@ -87,12 +87,16 @@ app.post("/picture", async function (req, res) {
     const apiKey = process.env.PIXBAY_API_KEY;
     let city = data.city;
 
-    const result = await fetch("https://pixabay.com/api/?key="+apiKey+"&q="+city)
+    const result = await fetch("https://pixabay.com/api/?key="+apiKey+"&q="+city+"&category=travel")
     try {
       const response = await result.json();
-      console.log(response);
+      console.log(response.hits[0]);
+      response.hits[0].webformatHeight = 350;
+      response.hits[0].webformatWidth = 375;
       newEntry = {
-          picture: response.hits[0].pageURL // doesn't work as expected
+          picture: response.hits[0].webformatURL,
+          height: response.hits[0].webformatHeight,
+          width: response.hits[0].webformatWidth
     };
     projectData["pixbay"] = newEntry;
     } catch (error) {

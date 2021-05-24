@@ -123,6 +123,8 @@ const update = async () => {
         let image = document.getElementById("image");
         console.log(image);
         image.setAttribute('src', `${allData.pixbay.picture}`);
+        image.setAttribute('height', `${allData.pixbay.height}`);
+        image.setAttribute('width', `${allData.pixbay.width}`);
         console.log(image);
         // doesn't work as expected
         document.getElementById("weatherInput").innerHTML = `${allData.currentWeather}`;
