@@ -54,10 +54,8 @@ function dateCompare(data) {
     console.log(userDate);
     console.log(new Date())
     let cutoffDate = new Date().addDays(7);
-    // console.log(cutoffDate);
     let difference = userDate.getTime() - cutoffDate.getTime();
     let differenceByDay = difference / (1000 * 3600 * 24);
-    // console.log(differenceByDay);
     if (differenceByDay <= 0) {
       console.log('input date is within 7 days of current date');
       postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
@@ -117,18 +115,12 @@ const update = async () => {
     const request = await fetch("http://localhost:8000/updatePage");
     try {
         const allData = await request.json();
-        console.log(allData);
-        console.log(allData.pixbay.picture);
-        // Create or find HTML elements to update
         let image = document.getElementById("image");
-        console.log(image);
         image.setAttribute('src', `${allData.pixbay.picture}`);
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
-        console.log(image);
-        // doesn't work as expected
-        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather}`;
-        // document.getElementById("").innerHTML = allData["entry"].entry;
+        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather.temp}`;
+        document.getElementById("weatherDescript").innerHTML = `${allData.currentWeather.description}`;
     } catch (error) {
         console.log("error", error);
     }

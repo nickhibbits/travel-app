@@ -48,7 +48,8 @@ app.post("/current", async function (req, res) {
       console.log("test");
       console.log(response);
       newEntry = {
-      temp: response.data[0].temp // doesn't work as expected
+      temp: response.data[0].temp,
+      description: response.data[0].weather.description
     };
     projectData["currentWeather"] = newEntry;
     } catch (error) {

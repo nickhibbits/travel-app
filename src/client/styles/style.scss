@@ -17,7 +17,7 @@ body{
     justify-content: space-between;
     grid-gap: 10px;
     font-family: 'Oswald', sans-serif;
-    border: 1px solid red;
+    // border: 1px solid red;
 }
 
 .holder{
@@ -25,7 +25,7 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     height: auto;
-    border: 1px solid red;
+    // border: 1px solid red;
 }
 
 .headline {
@@ -61,7 +61,7 @@ button {
 .weatherHeader {
     font-size: 20px;
     grid-area: 4/4/4/9;
-    border: 1px solid green;
+    // border: 1px solid green;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
