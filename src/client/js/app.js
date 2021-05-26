@@ -42,7 +42,7 @@ if(mm<10){
 }
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("depart").setAttribute("min", today);
-
+document.getElementById("return").setAttribute("min", today);
 // Compare dates to get either current or future weather from Weatherbit
 function dateCompare(data) {
     Date.prototype.addDays = function(days) {
@@ -58,6 +58,7 @@ function dateCompare(data) {
     let differenceByDay = difference / (1000 * 3600 * 24);
     if (differenceByDay <= 0) {
       console.log('input date is within 7 days of current date');
+      console.log(userDate);
       postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
       postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
     }
@@ -119,7 +120,7 @@ const update = async () => {
         image.setAttribute('src', `${allData.pixbay.picture}`);
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
-        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather.temp}`;
+        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather.temp}` * 1.8 + 32 +"°F";
         document.getElementById("weatherDescript").innerHTML = `${allData.currentWeather.description}`;
     } catch (error) {
         console.log("error", error);

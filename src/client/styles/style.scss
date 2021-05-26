@@ -8,7 +8,7 @@ body{
 #app{
     display: grid;
     // margin declaration below not working??
-    grid-template-rows: 110px 65px 25px 400px;
+    grid-template-rows: 110px 65px 25px 300px;
     grid-template-columns: repeat(8, 1fr);
     height: 100vh;
     width: 100%;
@@ -44,6 +44,10 @@ body{
 
 .depart {
     grid-area: 2/2/2/3;
+}
+
+.return {
+    grid-area: 2/3/2/4;
 }
 
 .picture{

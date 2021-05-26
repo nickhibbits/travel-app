@@ -42,7 +42,7 @@ app.post("/current", async function (req, res) {
     let lat = data.latitude;
     let lon = data.longitude;
 
-    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"&lon="+lon+"&key="+apiKey)
+    const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"&lon="+lon+"&key="+apiKey+"&units=I")
     try {
       const response = await result.json();
       console.log("test");
@@ -67,12 +67,13 @@ app.post("/future", async function (req, res) {
   let lat = data.latitude;
   let lon = data.longitude;
 
-  const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"&lon="+lon+"&key="+apiKey)
+  const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"&lon="+lon+"&key="+apiKey+"&units=I")
   try {
     const response = await result.json();
     console.log(response);
     newEntry = {
-    // Extract relevant weather data
+      temp: response.data[0].temp,
+      description: response.data[0].weather.description
   }
   projectData["futureWeather"] = newEntry;
   } catch (error) {
