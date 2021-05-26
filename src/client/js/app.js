@@ -11,10 +11,15 @@ function performAction(e) {
       console.log(data.geonames[0].name);
       console.log(data.geonames[0].lat);
       console.log(data.geonames[0].lng);
-      console.log(data.geonames[0].countryName);
       dateCompare(data)
-    }).then(function(data){
-      update()
+    })
+    .then(function(data){
+      if (dateCompare = true) {
+        updateCurrent()
+      }
+      else (dateCompare = false) {
+        updateFuture()
+      }
     });
 }
 
@@ -44,28 +49,30 @@ today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("depart").setAttribute("min", today);
 document.getElementById("return").setAttribute("min", today);
 // Compare dates to get either current or future weather from Weatherbit
-function dateCompare(data) {
+const dateCompare = function(data) {
     Date.prototype.addDays = function(days) {
       this.setDate(this.getDate() + parseInt(days));
       return this;
     };
 
     let userDate = new Date(document.getElementById("depart").value);
-    console.log(userDate);
-    console.log(new Date())
+    // console.log(userDate);
+    // console.log(new Date())
     let cutoffDate = new Date().addDays(7);
     let difference = userDate.getTime() - cutoffDate.getTime();
     let differenceByDay = difference / (1000 * 3600 * 24);
     if (differenceByDay <= 0) {
       console.log('input date is within 7 days of current date');
-      console.log(userDate);
+      // console.log(userDate);
       postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
       postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
+      // return 1;
     }
     else if (differenceByDay > 0) {
       console.log('input date is more than 7 days away from current date');
       postWeather("http://localhost:8000/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
       postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
+      // return 0;
     }
 }
 
@@ -111,8 +118,8 @@ const postPicture = async (url = "", newInfo = {} ) => {
     }
 };
 
-// Update UI
-const update = async () => {
+// Update UI for current weather forecast
+const updateCurrent = async () => {
     const request = await fetch("http://localhost:8000/updatePage");
     try {
         const allData = await request.json();
@@ -120,8 +127,25 @@ const update = async () => {
         image.setAttribute('src', `${allData.pixbay.picture}`);
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
-        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather.temp}` * 1.8 + 32 +"°F";
+        document.getElementById("weatherHeader").innerHTML = "Current weather for your Destination"
+        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather.temp}` + "°F";
         document.getElementById("weatherDescript").innerHTML = `${allData.currentWeather.description}`;
+    } catch (error) {
+        console.log("error", error);
+    }
+};
+
+const updateFuture = async () => {
+    const request = await fetch("http://localhost:8000/updatePage");
+    try {
+        const allData = await request.json();
+        let image = document.getElementById("image");
+        image.setAttribute('src', `${allData.pixbay.picture}`);
+        image.setAttribute('height', `${allData.pixbay.height}`);
+        image.setAttribute('width', `${allData.pixbay.width}`);
+        document.getElementById("weatherHeader").innerHTML = "Forecast for your Destination"
+        document.getElementById("weatherInput").innerHTML = `${allData[0].futureWeather.temp}` + "°F";
+        document.getElementById("weatherDescript").innerHTML = `${allData[0].futureWeather.description}`;
     } catch (error) {
         console.log("error", error);
     }

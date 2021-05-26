@@ -62,10 +62,11 @@ button {
     border-radius: 5px;
 }
 
-.weatherHeader {
+#weatherHeader {
+    display: flex;
     font-size: 20px;
-    grid-area: 4/4/4/9;
-    // border: 1px solid green;
+    grid-area: 5/1/5/4;
+    border: 1px solid green;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
