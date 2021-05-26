@@ -66,13 +66,13 @@ const dateCompare = function(data) {
       // console.log(userDate);
       postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
       postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
-      // return 1;
+      return 1;
     }
     else if (differenceByDay > 0) {
       console.log('input date is more than 7 days away from current date');
       postWeather("http://localhost:8000/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
       postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
-      // return 0;
+      return 0;
     }
 }
 
@@ -121,14 +121,16 @@ const postPicture = async (url = "", newInfo = {} ) => {
 // Update UI for current weather forecast
 const updateCurrent = async () => {
     const request = await fetch("http://localhost:8000/updatePage");
+    let userDate = new Date(document.getElementById("depart").value);
+    let returnDate = new Date(document.getElementById("return").value);
     try {
         const allData = await request.json();
         let image = document.getElementById("image");
         image.setAttribute('src', `${allData.pixbay.picture}`);
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
-        document.getElementById("weatherHeader").innerHTML = "Current weather for your Destination"
-        document.getElementById("weatherInput").innerHTML = `${allData.currentWeather.temp}` + "°F";
+        document.getElementById("tripDisplay").innerHTML = `Your trip from ${userDate} to ${returnDate} is set!`
+        document.getElementById("weatherInput").innerHTML = "Current weather for your Destination" + `${allData.currentWeather.temp}` + "°F";
         document.getElementById("weatherDescript").innerHTML = `${allData.currentWeather.description}`;
     } catch (error) {
         console.log("error", error);
@@ -137,14 +139,16 @@ const updateCurrent = async () => {
 
 const updateFuture = async () => {
     const request = await fetch("http://localhost:8000/updatePage");
+    let userDate = new Date(document.getElementById("depart").value);
+    let returnDate = new Date(document.getElementById("return").value);
     try {
         const allData = await request.json();
         let image = document.getElementById("image");
         image.setAttribute('src', `${allData.pixbay.picture}`);
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
-        document.getElementById("weatherHeader").innerHTML = "Forecast for your Destination"
-        document.getElementById("weatherInput").innerHTML = `${allData[0].futureWeather.temp}` + "°F";
+        document.getElementById("tripDisplay").innerHTML = `Your trip from ${userDate} to ${returnDate} is set!`
+        document.getElementById("weatherInput").innerHTML = "Forecast for your Destination" + `${allData[0].futureWeather.temp}` + "°F";
         document.getElementById("weatherDescript").innerHTML = `${allData[0].futureWeather.description}`;
     } catch (error) {
         console.log("error", error);
