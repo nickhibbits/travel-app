@@ -14,12 +14,13 @@ function performAction(e) {
       dateCompare(data)
     })
     .then(function(data){
-      if (dateCompare = true) {
-        updateCurrent()
-      }
-      else (dateCompare = false) {
-        updateFuture()
-      }
+      updateCurrent();
+    //   if (dateCompare(data) = true) {
+    //     updateCurrent()
+    //   }
+    //   else (dateCompare(data) = false) {
+    //     updateFuture()
+    //   }
     });
 }
 
