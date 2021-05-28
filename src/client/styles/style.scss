@@ -8,7 +8,7 @@ body{
 #app{
     display: grid;
     // margin declaration below not working??
-    grid-template-rows: 110px 65px 25px 300px;
+    grid-template-rows: 110px 65px 25px 300px 40px 60px;
     grid-template-columns: repeat(8, 1fr);
     height: 100vh;
     width: 100%;
@@ -64,9 +64,17 @@ button {
 
 #tripDisplay {
     display: flex;
-    font-size: 20px;
-    grid-area: 5/1/5/4;
-    border: 1px solid green;
+    padding-top: 2%;
+    font-size: 35px;
+    grid-area: 6/1/6/4;
+    border-top: 1px solid green;
+}
+
+.weatherHeader {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+  grid-area: 5/1/5/4;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
