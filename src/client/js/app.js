@@ -11,16 +11,14 @@ function performAction(e) {
       console.log(data.geonames[0].name);
       console.log(data.geonames[0].lat);
       console.log(data.geonames[0].lng);
-      dateCompare(data)
-    })
-    .then(function(data){
-      updateCurrent();
-    //   if (dateCompare(data) = true) {
-    //     updateCurrent()
-    //   }
-    //   else (dateCompare(data) = false) {
-    //     updateFuture()
-    //   }
+      dateCompare(data);
+      const flag = dateCompare(data);
+      if (flag) {
+        updateCurrent()
+      }
+      else {
+        updateFuture()
+      }
     });
 }
 
@@ -133,7 +131,7 @@ const updateCurrent = async () => {
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
         document.getElementById("tripDisplay").innerHTML = `Your trip from ${departDate.getMonth()+1}/${departDate.getDate()+1} to ${returnDate.getMonth()+1}/${returnDate.getDate()+1} is set!`;
-        document.getElementById("weatherInput").innerHTML = `Current weather for your Destination is ${allData.currentWeather.temp}°F with ${allData.currentWeather.description}`;
+        document.getElementById("weatherInput").innerHTML = `The current weather for your destination is ${allData.currentWeather.temp}°F with ${allData.currentWeather.description.toLowerCase()}`;
     } catch (error) {
         console.log("error", error);
     }
@@ -151,8 +149,7 @@ const updateFuture = async () => {
         image.setAttribute('height', `${allData.pixbay.height}`);
         image.setAttribute('width', `${allData.pixbay.width}`);
         document.getElementById("tripDisplay").innerHTML = `Your trip from ${departDate.getMonth()+1}/${departDate.getDate()+1} to ${returnDate.getMonth()+1}/${returnDate.getDate()+1} is set!`;
-        document.getElementById("weatherInput").innerHTML = "Forecast for your Destination" + `${allData[0].futureWeather.temp}` + "°F";
-        document.getElementById("weatherDescript").innerHTML = `${allData[0].futureWeather.description}`;
+        document.getElementById("weatherInput").innerHTML = `The weather for your destination is typically between ${allData.futureWeather.HiTemp}°F and ${allData.futureWeather.LowTemp}°F`;
     } catch (error) {
         console.log("error", error);
     }

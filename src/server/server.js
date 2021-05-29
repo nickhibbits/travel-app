@@ -72,8 +72,8 @@ app.post("/future", async function (req, res) {
     const response = await result.json();
     console.log(response);
     newEntry = {
-      temp: response.data[0].temp,
-      description: response.data[0].weather.description
+      HiTemp: response.data[0].max_temp,
+      LowTemp: response.data[0].low_temp,
   }
   projectData["futureWeather"] = newEntry;
   } catch (error) {

@@ -1,19 +1,22 @@
 body{
-  background: #1d2239;
-  margin-left: 8%;
-  margin-right: 8%;
+  background: #56938d;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 0%;
+  margin-bottom: 0%;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
     display: grid;
-    // margin declaration below not working??
-    grid-template-rows: 110px 65px 25px 300px 40px 60px;
-    grid-template-columns: repeat(8, 1fr);
+    padding-left: 2%;
+    margin-top: none;
+    grid-template-rows: 110px 65px 25px 300px 60px 60px;
+    grid-template-columns: repeat(5, 1fr);
     height: 100vh;
     width: 100%;
-    background: #1d2239;
-    color: #f0d43a;
+    background: white;
+    color: black;
     justify-content: space-between;
     grid-gap: 10px;
     font-family: 'Oswald', sans-serif;
@@ -30,7 +33,7 @@ body{
 
 .headline {
   font-size: 70px;
-  border-bottom: 5px solid blue;
+  border-bottom: 5px solid #56938d;
   grid-area: 1/1/1/3;
 }
 
@@ -60,6 +63,11 @@ img{
 button {
     grid-area: 3/1/3/2;
     border-radius: 5px;
+    background-color: #535e6f;
+}
+
+button:hover {
+  background-color: #181d2d
 }
 
 #tripDisplay {
@@ -67,7 +75,7 @@ button {
     padding-top: 2%;
     font-size: 35px;
     grid-area: 6/1/6/4;
-    border-top: 1px solid green;
+    border-top: 1px solid black;
 }
 
 .weatherHeader {
@@ -85,18 +93,18 @@ label{
 input{
     display: inline;
     border-radius: 5px;
-    background:#535e6f;
-    color: #f0d43a;
+    background:white;
+    color: black;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
-    border: none;
+    border: 1px solid black;
 }
 
 button{
     width: 70px;
     height: 25px;
     background: #3b4a6b;
-    color: #f0d43a;
+    color: white;
     font-size: 15px;
     font-family: 'Oswald', sans-serif;
     border: none;
@@ -108,7 +116,7 @@ h1{
 
 textarea{
     background:#22b2da;
-    color: #f0d43a;
+    color: black;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
@@ -123,19 +131,19 @@ button:focus {
 
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */
-    color: #f0d43a;
+    color: black;
     font-family: 'Oswald', sans-serif;
 
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #f0d43a;
+    color: black;
     font-family: 'Oswald', sans-serif;
 
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #f0d43a;
+    color: black;
     font-family: 'Oswald', sans-serif;
 
 }
