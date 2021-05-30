@@ -29,6 +29,7 @@ app.use(express.static("dist"));
 const port = 8000;
 
 const server = app.listen(port, () => {
+    return(`Server is running on localhost: ${port}`);
     console.log(`Server is running on localhost: ${port}`);
 });
 
@@ -70,7 +71,7 @@ app.post("/future", async function (req, res) {
   const result = await fetch("https://api.weatherbit.io/v2.0/forecast/daily?lat="+lat+"&lon="+lon+"&key="+apiKey+"&units=I")
   try {
     const response = await result.json();
-    console.log(response);
+    // console.log(response);
     newEntry = {
       HiTemp: response.data[0].max_temp,
       LowTemp: response.data[0].low_temp,
