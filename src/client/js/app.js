@@ -3,6 +3,14 @@ import {dateCompare} from './dateCompare'
 import {updateCurrent} from './update'
 import {updateFuture} from './update'
 
+// Require Express to run server and routes
+const express = require("express");
+
+// Start up an instance of app
+const app = express();
+
+module.exports = app;
+
 /* Global Variables */
 var moment = require('moment');
 let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=10&q=";
@@ -23,22 +31,6 @@ function performAction(e) {
       }
     });
 };
-
-// set minimum date for current day
-let today = new Date();
-let dd = today.getDate();
-let mm = today.getMonth()+1;
-let yyyy = today.getFullYear();
-if(dd<10){
-  dd='0'+dd
-}
-if(mm<10){
-  mm='0'+mm
-}
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("depart").setAttribute("min", today);
-document.getElementById("return").setAttribute("min", today);
-
 
 // Export performAction function for webpack entry
 export { performAction }

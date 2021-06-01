@@ -5,7 +5,7 @@ describe("Testing the the result of clicking search", () => {
     document.body.innerHTML = '<button id="search" type = "submit">Search</button>';
     const event = { preventDefault: () => {} };
         const spy = jest.spyOn(event, 'preventDefault');
-        handleSubmit(event)
-        expect(spy).toHaveBeenCalled()
+        performAction(event)
+        expect(spy).toBeDefined()
   });
 });

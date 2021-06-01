@@ -1,11 +1,8 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+const projectData = {};
 
-// Require Express to run server and routes
-const express = require("express");
-
-// Start up an instance of app
-const app = express();
+// const app = require("../client/js/app.js/app");
+const app = require("../client/js/app/app");
 
 const fetch = require('node-fetch');
 
@@ -31,7 +28,6 @@ const port = 8000;
 const server = app.listen(port, () => {
     console.log(`Server is running on localhost: ${port}`);
 });
-
 
 // POST route used if departure date is within a week
 app.post("/current", async function (req, res) {
