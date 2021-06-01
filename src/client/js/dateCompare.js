@@ -1,5 +1,7 @@
 import {postWeather} from './postWeather'
 import {postPicture} from './postPicture'
+import {updateCurrent} from './update'
+import {updateFuture} from './update'
 
 // Compare dates to get either current or future weather from Weatherbit
 const dateCompare = function(data) {
@@ -16,16 +18,18 @@ const dateCompare = function(data) {
     let differenceByDay = difference / (1000 * 3600 * 24);
     if (differenceByDay <= 0) {
       console.log('input date is within 7 days of current date');
-      // console.log(userDate);
-      postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-      postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
-      return 1;
+      postWeather("http://localhost:8000/current", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng}).then(() => { postPicture("http://localhost:8000/picture", {city:data.geonames[0].name}).then(() => {
+        updateCurrent();
+      });
+    });
+
     }
     else if (differenceByDay > 0) {
       console.log('input date is more than 7 days away from current date');
-      postWeather("http://localhost:8000/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng});
-      postPicture("http://localhost:8000/picture", {city:data.geonames[0].name});
-      return 0;
+      postWeather("http://localhost:8000/future", {country:data.geonames[0], latitude:data.geonames[0].lat, longitude:data.geonames[0].lng}).then(() => { postPicture("http://localhost:8000/picture", {city:data.geonames[0].name}).then(() => {
+        updateFuture();
+      });
+    });
     }
 }
 
