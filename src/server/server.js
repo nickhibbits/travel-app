@@ -2,7 +2,7 @@
 const projectData = {};
 
 // const app = require("../client/js/app.js/app");
-const app = require("../client/js/app/app");
+const app = require("./app");
 
 const fetch = require('node-fetch');
 
@@ -48,6 +48,7 @@ app.post("/current", async function (req, res) {
       description: response.data[0].weather.description
     };
     projectData["currentWeather"] = newEntry;
+    res.send(projectData);
     } catch (error) {
     console.log("error", error);
   }
@@ -72,6 +73,7 @@ app.post("/future", async function (req, res) {
       LowTemp: response.data[0].low_temp,
   }
   projectData["futureWeather"] = newEntry;
+  res.send(projectData);
   } catch (error) {
     console.log("error", error);
   }
@@ -97,6 +99,7 @@ app.post("/picture", async function (req, res) {
           width: response.hits[0].webformatWidth
     };
     projectData["pixbay"] = newEntry;
+    res.send(projectData);
     } catch (error) {
     console.log("error", error);
   }

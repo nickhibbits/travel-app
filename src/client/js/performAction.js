@@ -3,12 +3,6 @@ import {dateCompare} from './dateCompare'
 import {updateCurrent} from './update'
 import {updateFuture} from './update'
 
-// Require Express to run server and routes
-const express = require("express");
-
-// Start up an instance of app
-const app = express();
-
 module.exports = app;
 
 /* Global Variables */
