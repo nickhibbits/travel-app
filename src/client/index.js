@@ -1,5 +1,5 @@
 // Import statements for relevant js
-import { performAction } from './js/app'
+import { performAction } from './js/performAction'
 import {getLocation} from './js/getLocation'
 import {dateCompare} from './js/dateCompare'
 import {updateCurrent} from './js/update'
