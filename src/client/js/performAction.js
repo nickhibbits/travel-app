@@ -14,13 +14,6 @@ function performAction(e) {
     getLocation(baseURL, dest)
     .then(function(data) {
       dateCompare(data);
-      // const flag = dateCompare(data);
-      // if (flag) {
-      //   updateCurrent()
-      // }
-      // else {
-      //   updateFuture()
-      // }
     });
 };
 
