@@ -1,7 +1,7 @@
 # Travel App
 
 ## Overview
-This mock travel app allows the user to input a destination and trip duration, then be shown a picture of the searched area as well as a logged confirmation of the dates selected for their trip.
+This mock travel app allows the user to input a destination and trip duration, then be shown a picture of the searched area as well as a logged confirmation of the dates selected for the length of their trip.
 
 ## Technical Details
 This app utilizes Webpack to manage files, as well as a Node and Express environment to call 3 different APIs:
