@@ -87,7 +87,7 @@ app.post("/picture", async function (req, res) {
     try {
       const response = await result.json();
       console.log(response.hits[0]);
-      response.hits[0].webformatHeight = 350;
+      response.hits[0].webformatHeight = 300;
       response.hits[0].webformatWidth = 375;
       newEntry = {
           picture: response.hits[0].webformatURL,
