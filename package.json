@@ -27,6 +27,7 @@
     "webpack-cli": "^4.5.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.4",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.2",
@@ -38,6 +39,7 @@
     "html-webpack-plugin": "^5.3.1",
     "jest": "^27.0.3",
     "mini-css-extract-plugin": "^1.4.0",
+    "regenerator-runtime": "^0.13.7",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
     "superagent": "^6.1.0",
