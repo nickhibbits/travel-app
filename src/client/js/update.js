@@ -1,10 +1,8 @@
-// Update UI for current weather forecast
+// Update UI for weather forecast, depending on results from dateCompare
 const update = async (isCurrent) => {
     const request = await fetch("http://localhost:8000/updatePage");
     let departDate = new Date(document.getElementById("depart").value);
     let returnDate = new Date(document.getElementById("return").value);
-    console.log(departDate);
-    console.log(returnDate);
     if (isCurrent) {
         try {
             const allData = await request.json();

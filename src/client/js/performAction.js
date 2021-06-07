@@ -7,7 +7,9 @@ import { updateFuture } from "./update";
 var moment = require("moment");
 let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=10&q=";
 
-//GET coordinates of destination, compare deprture date with current date, and POST date-dependent weather with picture
+// -- Function Flow --
+// GET coordinates of destination, compare deprture date with current date, and POST date-dependent weather with picture
+
 function performAction(e) {
     e.preventDefault();
     let dest = document.getElementById("dest").value;

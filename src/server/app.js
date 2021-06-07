@@ -13,7 +13,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 /* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware.
+//Configure express to use body-parser as middle-ware.
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -28,7 +28,6 @@ app.use(express.static("dist"));
 // POST route used if departure date is within a week
 app.post("/current", async function (req, res) {
     let data = req.body;
-    console.log(data);
 
     const apiKey = process.env.WEATHERBIT_API_KEY;
     let lat = data.latitude;
@@ -37,8 +36,7 @@ app.post("/current", async function (req, res) {
     const result = await fetch("https://api.weatherbit.io/v2.0/current?lat="+lat+"&lon="+lon+"&key="+apiKey+"&units=I")
     try {
       const response = await result.json();
-      console.log("test");
-      console.log(response);
+
       newEntry = {
       temp: response.data[0].temp,
       description: response.data[0].weather.description
@@ -48,13 +46,11 @@ app.post("/current", async function (req, res) {
     } catch (error) {
     console.log("error", error);
   }
-    console.log(projectData);
 });
 
 // POST route used if departure date is past a week
 app.post("/future", async function (req, res) {
   let data = req.body;
-  console.log(data);
 
   const apiKey = process.env.WEATHERBIT_API_KEY;
   let lat = data.latitude;
@@ -73,7 +69,6 @@ app.post("/future", async function (req, res) {
   } catch (error) {
     console.log("error", error);
   }
-  console.log(projectData);
 });
 
 // POST route to retrieve data from Pixbay
@@ -99,13 +94,11 @@ app.post("/picture", async function (req, res) {
     } catch (error) {
     console.log("error", error);
   }
-    console.log(projectData);
 });
 
 // GET route to retrieve data used to update UI
 app.get("/updatePage", function (req, res) {
     res.send(projectData);
-    console.log(projectData);
 });
 
 module.exports = app;

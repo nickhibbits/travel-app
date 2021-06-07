@@ -10,8 +10,6 @@ const dateCompare = function (data) {
     };
 
     let userDate = new Date(document.getElementById("depart").value);
-    // console.log(userDate);
-    // console.log(new Date())
     let cutoffDate = new Date().addDays(7);
     let difference = userDate.getTime() - cutoffDate.getTime();
     let differenceByDay = difference / (1000 * 3600 * 24);
