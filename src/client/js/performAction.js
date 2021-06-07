@@ -3,8 +3,6 @@ import {dateCompare} from './dateCompare'
 import {updateCurrent} from './update'
 import {updateFuture} from './update'
 
-module.exports = app;
-
 /* Global Variables */
 var moment = require('moment');
 let baseURL = "http://api.geonames.org/searchJSON?username=nickhibbits&maxRows=10&q=";
