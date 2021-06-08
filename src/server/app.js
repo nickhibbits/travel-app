@@ -81,16 +81,23 @@ app.post("/picture", async function (req, res) {
     const result = await fetch("https://pixabay.com/api/?key="+apiKey+"&q="+city+"&category=travel")
     try {
       const response = await result.json();
-      console.log(response.hits[0]);
-      // response.hits[0].webformatHeight = 300;
-      // response.hits[0].webformatWidth = 375;
-      newEntry = {
-          picture: response.hits[0].webformatURL,
-          // height: response.hits[0].webformatHeight,
-          // width: response.hits[0].webformatWidth
-    };
-    projectData["pixbay"] = newEntry;
-    res.send(projectData);
+      const arr = response.hits[0];
+      console.log(arr);
+      if (arr === undefined || arr.length === 0) {
+        newEntry = {
+            picture: "No picture available",
+        };
+        console.log("No picture available");
+        projectData["pixbay"] = newEntry;
+        res.send(projectData);
+      }
+      else {
+        newEntry = {
+            picture: response.hits[0].webformatURL,
+        };
+        projectData["pixbay"] = newEntry;
+        res.send(projectData);
+      }
     } catch (error) {
     console.log("error", error);
   }
