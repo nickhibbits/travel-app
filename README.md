@@ -3,7 +3,7 @@
 ## Overview
 This mock travel app is my first attempt to bring the core components of Front End Development together in a single project. 
 
-# The app flows as follows
+### The app flows as follows
 * First the user types a destination and trip duration. 
 * Next they are given the following:
   * A picture of the area they searched.
