@@ -19,6 +19,3 @@ This app utilizes Webpack to manage files, as well as a Node and Express environ
 
 Using chained promises on both the client and server side, the UI is updated seamlessly. <br /><br />
 Additionally the app is responsive for different window sizes
-
-## Extra
-This capstone project ties together all the skills covered in the Udacity FE nanodegree.
